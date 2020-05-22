@@ -1,0 +1,7 @@
+Centimeters	1	1
+Inches	0.393701	2.54
+Meters	0.01	100
+Feet	0.0328084	30.48
+Yards	0.0109361	91.44
+Miles	0.0000062137	160934
+Kilometers	0.00001	100000
