@@ -13,6 +13,7 @@ import (
 )
 
 var clear map[string]func()
+var cont = true
 
 func init() {
 	clear = make(map[string]func())
@@ -143,14 +144,20 @@ func convert(conversion map[string][]string, units []string) {
 		fmt.Println(fS + " " + units[ind - 1] + " ------> " + fCS + " " + units[ind2 - 1])
 		fmt.Print("\n\n")
 
-		fmt.Println("Enter Another Value of " + units[ind - 1] + " or \"quit\" to exit")
+		fmt.Println("Enter Another Value of " + units[ind - 1] + " for another conversion")
+		fmt.Println("Enter \"Restart\" to make a new conversion")
+		fmt.Println("Enter \"Quit\" to end program")
 
 		for {
 			text, _ = reader.ReadString('\n')
 			text = strings.Replace(text, "\n", "", -1)
 
 			if text == "quit" || text == "Quit" {
+				CallClear()
 				os.Exit(0)
+			} else if text == "restart" || text == "Restart" {
+				cont = true
+				return
 			} else {
 				_, err := strconv.ParseFloat(text, 64)
 
@@ -213,11 +220,13 @@ func chooseType() string{
 
 //Main function
 func main()  {
-	//Clears screen for better readability
-	CallClear()
 
-	FILENAME := chooseType()
+	for cont {
+		//Clears screen for better readability
+		CallClear()
 
-	convert(getUnits(FILENAME))
+		FILENAME := chooseType()
 
+		convert(getUnits(FILENAME))
+	}
 }
