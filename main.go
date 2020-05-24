@@ -126,6 +126,7 @@ func convert(conversion map[string][]string, units []string) {
 	for {
 		//Ends program if user input "quit"
 		if text == "quit" || text == "Quit" {
+			CallClear()
 			os.Exit(0)
 		}
 		//Converts user's input to a floating point
